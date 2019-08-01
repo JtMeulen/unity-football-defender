@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 615119078894537487}
   - component: {fileID: 2236904461323747853}
   - component: {fileID: 22199981981087522}
+  - component: {fileID: -7488162469360834171}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -112,9 +113,22 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0017096994, y: -0.0017111895}
   m_Size: {x: 0.5830342, y: 0.37768045}
   m_Direction: 1
+--- !u!114 &-7488162469360834171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615119078894537486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd4c80b6a87d4b738e0e7863a527a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

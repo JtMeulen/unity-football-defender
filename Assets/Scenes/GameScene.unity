@@ -152,6 +152,10 @@ MonoBehaviour:
   waveConfigs:
   - {fileID: 11400000, guid: 3f4d3b54819494eb489c9da0e4ee56e2, type: 2}
   - {fileID: 11400000, guid: 89a070af9cdc14370a35c098ad49191e, type: 2}
+  - {fileID: 11400000, guid: d318b0947b21a4a4aa3c33a7554089c8, type: 2}
+  - {fileID: 11400000, guid: c8d8e9392f0f144b2a0c9cf03daded87, type: 2}
+  startingWave: 0
+  isLooping: 1
 --- !u!4 &1332549268
 Transform:
   m_ObjectHideFlags: 0
@@ -420,6 +424,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281397655464172087, guid: a241b4b5631f741c29a4e03b37f7fcda,
+        type: 3}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a241b4b5631f741c29a4e03b37f7fcda, type: 3}

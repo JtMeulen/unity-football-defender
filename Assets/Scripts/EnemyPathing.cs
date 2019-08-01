@@ -5,25 +5,30 @@ using UnityEngine;
 public class EnemyPathing : MonoBehaviour
 {
     // Variable init
-    [SerializeField] WaveConfig waveConfig;
-
+    WaveConfig waveConfig;
     private List<Transform> waypoints;
-    private int currentWaypoint = 0;
     private float enemySpeed = 4f;
+    private int currentWaypoint = 0;
 
     private void Start()
     {
         // Get all data from config file
         waypoints = waveConfig.GetWaypoints();
+        enemySpeed = waveConfig.GetMoveSpeed();
 
+        // set initial position for enemy
         transform.position = waypoints[currentWaypoint].transform.position;
-
     }
 
     private void Update()
     {
         Move();
 
+    }
+
+    public void SetWaveConfig(WaveConfig waveConfig)
+    {
+        this.waveConfig = waveConfig;
     }
 
     private void Move()

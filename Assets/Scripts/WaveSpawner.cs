@@ -5,28 +5,35 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] List<WaveConfig> waveConfigs;
+    [SerializeField] int startingWave = 0;
+    [SerializeField] bool isLooping = false;
 
-    private int startingWaveIndex = 0;
-
-    void Start()
+    IEnumerator Start()
     {
-        var currentWave = waveConfigs[startingWaveIndex];
-        StartCoroutine(SpawnAllEnemiesInWave(currentWave));
+        do
+        {
+            yield return StartCoroutine(SpawnAllWaves());
+        } while (isLooping);
     }
 
-    void Update()
+    private IEnumerator SpawnAllWaves()
     {
-        
+        for(int i = startingWave; i < waveConfigs.Count; i++)
+        {
+            var currentWave = waveConfigs[i];
+            yield return StartCoroutine(SpawnAllEnemiesInWave(currentWave));
+        }
     }
 
     private IEnumerator SpawnAllEnemiesInWave(WaveConfig currentWave)
     {
         for(int i = 0; i < currentWave.GetTotalEnemies(); i++)
         {
-            Instantiate(
+            var newEnemy = Instantiate(
                 currentWave.GetEnemyPrefab(),
                 currentWave.GetWaypoints()[0].transform.position,
                 Quaternion.identity);
+            newEnemy.GetComponent<EnemyPathing>().SetWaveConfig(currentWave);
             yield return new WaitForSeconds(currentWave.GetTimeBetweenSpawns());
         }
     }
