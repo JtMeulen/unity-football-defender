@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6427026435335525941}
-  - component: {fileID: 6427026435335525938}
   - component: {fileID: 6427026435335525940}
+  - component: {fileID: 6427026435335525938}
   - component: {fileID: 1780976158}
-  m_Layer: 0
+  - component: {fileID: 3479810072228160723}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,6 +34,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6427026435335525940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427026435335525939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25432462b19041bf83615bd143441a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 10
+  health: 50
+  gameSpacePadding: 0.5
+  ballPrefab: {fileID: 615119078894537486, guid: 118a042505efd4d68aaddb537adef25f,
+    type: 3}
+  ballSpeed: 20
+  ballCooldown: 0.3
+  hitSound: {fileID: 8300000, guid: 014c32d3ad790481cb5ecb470344738b, type: 3}
+  deathSound: {fileID: 8300000, guid: 1105957bb2d034aada55e610a7aa2b71, type: 3}
+  shootSound: {fileID: 8300000, guid: 153460ab27441483bb5a252aca833136, type: 3}
 --- !u!212 &6427026435335525938
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -82,24 +105,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6427026435335525940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6427026435335525939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d25432462b19041bf83615bd143441a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 10
-  gameSpacePadding: 0.5
-  ballPrefab: {fileID: 615119078894537486, guid: 118a042505efd4d68aaddb537adef25f,
-    type: 3}
-  ballSpeed: 20
-  ballCooldown: 0.3
 --- !u!95 &1780976158
 Animator:
   serializedVersion: 3
@@ -119,3 +124,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!60 &3479810072228160723
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427026435335525939}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.03125, y: 1.0351562}
+    newSize: {x: 0.56, y: 0.62}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.1397175, y: 0.3980875}
+      - {x: -0.14913182, y: 0.39808798}
+      - {x: -0.25173593, y: 0.25282764}
+      - {x: -0.24649236, y: 0.06525087}
+      - {x: -0.40698993, y: -0.049079895}
+      - {x: -0.3359375, y: -0.34409714}
+      - {x: -0.19241071, y: -0.32363558}
+      - {x: -0.19309066, y: -0.50748205}
+      - {x: 0.18134917, y: -0.4900279}
+      - {x: 0.18638432, y: -0.3381455}
+      - {x: 0.33013386, y: -0.35328627}
+      - {x: 0.39380145, y: -0.041861057}
+      - {x: 0.2465978, y: 0.055593014}
+      - {x: 0.2485179, y: 0.24203444}

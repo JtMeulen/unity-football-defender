@@ -6,11 +6,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Configuration variables
+    [Header("Player Details")]
     [SerializeField] float playerSpeed = 10f;
+    [SerializeField] int health = 50;
     [SerializeField] float gameSpacePadding = 1f;
+
+    [Header("Shooting Config")]
     [SerializeField] GameObject ballPrefab;
     [SerializeField] float ballSpeed = 20f;
     [SerializeField] float ballCooldown = .3f;
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip shootSound;
 
     // Variable init
     float minX;
@@ -25,8 +32,8 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Could not find ball prefab on player");
         }
-
-        SetUpWorldBoundaries();
+        
+        SetUpWorldBoundaries(); 
     }
 
     private void Update()
@@ -63,9 +70,11 @@ public class Player : MonoBehaviour
         while(true)
         {
             GameObject ball = Instantiate(
-                ballPrefab, transform.position,
+                ballPrefab,
+                transform.position,
                 ballPrefab.transform.rotation) as GameObject;
             ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, ballSpeed);
+            AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position);
             yield return new WaitForSeconds(ballCooldown);
         }
     }
@@ -77,5 +86,20 @@ public class Player : MonoBehaviour
         maxX = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - gameSpacePadding;
         minY = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + gameSpacePadding;
         maxY = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - gameSpacePadding;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        DamageDealer damageDealer = collision.GetComponent<DamageDealer>();
+        health -= damageDealer.GetDamage();
+
+        damageDealer.Hit();
+        AudioSource.PlayClipAtPoint(hitSound, Camera.main.transform.position);
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
+        }
     }
 }
