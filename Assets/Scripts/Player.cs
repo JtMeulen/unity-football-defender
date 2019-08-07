@@ -100,6 +100,9 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
             AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
-        }
+            FindObjectOfType<Level>().LoadGameOver();
+
+			FindObjectOfType<GameSession>().StopScore();
+		}
     }
 }

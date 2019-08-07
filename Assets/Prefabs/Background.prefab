@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8e2ac955dfe434b9c846085b77a0df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 3
+  scrollSpeed: 0.2
 --- !u!33 &2723918822418112945
 MeshFilter:
   m_ObjectHideFlags: 0

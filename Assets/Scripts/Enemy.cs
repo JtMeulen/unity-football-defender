@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioClip shootSound;
 
+    [Header("Point System")]
+    [SerializeField] int pointsOnHit = 1;
+    [SerializeField] int pointsOnKill = 6;
+
     private float shotCounter;
 
     private void Start()
@@ -70,6 +74,12 @@ public class Enemy : MonoBehaviour
             Destroy(particleEffect, VFXDuration);
             AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
             Destroy(gameObject);
+
+            FindObjectOfType<GameSession>().AddScore(pointsOnKill);
+        }
+        else
+        {
+            FindObjectOfType<GameSession>().AddScore(pointsOnHit);
         }
     }
 }
