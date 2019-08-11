@@ -61,6 +61,8 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 3d821918225d24e40b1376ec837089b1, type: 3}
   deathSound: {fileID: 8300000, guid: 7e0e46b376c274889ae4c0d3e92a62e9, type: 3}
   shootSound: {fileID: 8300000, guid: 153460ab27441483bb5a252aca833136, type: 3}
+  pointsOnHit: 2
+  pointsOnKill: 12
 --- !u!212 &1680831242327907672
 SpriteRenderer:
   m_ObjectHideFlags: 0

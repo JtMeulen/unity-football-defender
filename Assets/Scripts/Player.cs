@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     float minY;
     float maxY;
     Coroutine throwBallCoroutine;
+    LifeText lifeText;
 
     private void Start()
     {
@@ -32,7 +33,10 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Could not find ball prefab on player");
         }
-        
+
+        lifeText = FindObjectOfType<LifeText>();
+
+        lifeText.UpdateHealthText(health);
         SetUpWorldBoundaries(); 
     }
 
@@ -92,12 +96,14 @@ public class Player : MonoBehaviour
     {
         DamageDealer damageDealer = collision.GetComponent<DamageDealer>();
         health -= damageDealer.GetDamage();
+        lifeText.UpdateHealthText(health);
 
         damageDealer.Hit();
         AudioSource.PlayClipAtPoint(hitSound, Camera.main.transform.position);
 
         if (health <= 0)
         {
+            lifeText.UpdateHealthText(0);
             Destroy(gameObject);
             AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
             FindObjectOfType<Level>().LoadGameOver();
